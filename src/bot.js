@@ -58,7 +58,12 @@ client.on('message', message => {
             });
     }
     if (command === 'avatar'){
-        message.channel.send(message.author.avatarURL);
+        try {
+            const tagg = message.mentions.users.first();
+            message.channel.send(`${tagg.username}'s avatar: ${tagg.avatarURL}`);
+        } catch(e) {
+            message.channel.send(`${message.author.username}'s avatar: ${message.author.avatarURL}`);
+        }
     }
 
     if (command === 'roll'){
@@ -83,17 +88,30 @@ client.on('message', message => {
         if (args[1] == null){
             message.channel.send(`Total das rolagens: ${total}`)
         } else {
-            try {
-                message.channel.send(`Total das rolagens: ${total+parseInt(args[1])};`);
-            } catch(e) {
+            message.channel.send(`Total das rolagens: ${total+parseInt(args[1])};`)
+            .catch(err => {
                 message.channel.send("Argumento de incremento inválido");
-                console.log(e);
-            }
+                console.log(err);
+            });
         }
     }
 
     if (command === 'say'){
         return message.channel.send(args[0]);
+    }
+
+    if (command === 'delete') {
+        const amount = 
+        if (isNaN(amount)){
+            return message.channel.send("Número inválido de mensagens (não recebi um número).");
+        }
+        if (amount <= 1 || amount > 100){
+            return message.channel.send("Número inválido de mensagens (deve ser menor que 100 e maior que 2).");
+        }
+        message.channel.bulkDelete(amount, true).catch(err => {
+            console.log(err);
+            return message.channel.send("Não foi possível deletar as mensagens.");
+        });
     }
 });
 
