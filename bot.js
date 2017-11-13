@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Discord = require("discord.js");
+const music = require('discord.js-music-v11');
 const {token, prefix} = require("./config.json");
 
 const client = new Discord.Client();
@@ -61,6 +62,13 @@ client.on('message', message => {
         console.log("ERROR:" + e);
         message.channel.send("Não foi possível executar o comando.");
     }
+});
+
+music(client, {
+	prefix: prefix,
+	global: false,
+	maxQueueSize: 5,
+	clearInvoker: true
 });
 
 client.login(token);

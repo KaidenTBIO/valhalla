@@ -1,8 +1,8 @@
 const ytdl = require("ytdl-core");
 
 module.exports = {
-	name: 'play',
-	description: 'Usage: v!play (youtube link)\nPlay a youtube video.',
+	name: 'playV',
+	description: 'Usage: v!playV (youtube link)\nPlay a youtube video.',
     args: true,
 	execute(message, args){
 		const voiceChannel = message.member.voiceChannel;
