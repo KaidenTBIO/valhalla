@@ -67,8 +67,9 @@ client.on('message', message => {
 music(client, {
 	prefix: prefix,
 	global: false,
-	maxQueueSize: 5,
-	clearInvoker: true
+	maxQueueSize: 10,
+	clearInvoker: true,
+    channel: 'soon'
 });
 
 client.login(token);
