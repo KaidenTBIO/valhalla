@@ -1,8 +1,7 @@
 # Valhalla
-======
 ###### Discord Bot written in JavaScript with Discord.js
 
-Usage for noob nerds:
+Usage:
 1. Install `node` and `npm`;
     apt-get:
     ```
